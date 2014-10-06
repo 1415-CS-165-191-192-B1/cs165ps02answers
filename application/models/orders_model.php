@@ -10,7 +10,9 @@ class Orders_model extends CI_Model {
   * Orders not yet shipped by given cut-off date
   * * Given: Cut-off Date
   * * Output: Order ID, Customer, Required Date, Shipped Date
-  * * Note: Include all orders that are not yet shipped
+  * * Note: Include all orders that are not yet shipped, order must be created
+  * *       before the cutoff date
+  * *
   */
   function get_not_yet_shipped($cutoff) {
     $query_string =

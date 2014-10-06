@@ -15,7 +15,7 @@ class Sales_model extends CI_Model {
   */
   function get_product_sales($start, $end) {
     $query_string =
-      'SELECT "CategoryName",
+      'SELECT "CategoryName" AS "Category",
         "ProductName" AS "Product",
         SUM("UnitPrice"* (1 - "Discount") * "Quantity") AS "Sales"
       FROM Categories NATURAL JOIN
@@ -24,7 +24,7 @@ class Sales_model extends CI_Model {
         Orders
       WHERE "ShippedDate" BETWEEN ? AND ?
       GROUP BY "CategoryName", "ProductName"
-      ORDER BY "CategoryName", "Sales"';
+      ORDER BY "Category" ASC, "Sales" DESC';
     $product_sales = $this->db->query($query_string, array($start, $end));
     return $product_sales;
   }
